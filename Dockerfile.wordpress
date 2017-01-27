@@ -1,0 +1,11 @@
+FROM wordpress:latest
+
+
+ARG USERID
+ENV USERID ${USERID:-1000}
+ARG GROUPID
+ENV GROUPID ${GROUPID:-1000}
+RUN groupmod -g ${GROUPID} www-data
+RUN usermod -u ${USERID} www-data
+
+RUN chown -v -R www-data:www-data /var/www/html
